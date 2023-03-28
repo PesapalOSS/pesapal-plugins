@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset
+            name="main"
+    >
+        <field name="id" type="text" default="0" label="COM_PESAPAL_ID"
+               readonly="true" class="readonly"/>
+        <field name="firstname" type="text" class="inputbox"
+               size="40" label="COM_PESAPAL_FIRSTNAME"
+                required="true" />
+        <field name="lastname"
+               type="text" class="inputbox"
+               required="true"
+               size="40" label="COM_PESAPAL_LASTNAME"/>
+        <field name="email"
+               type="text" class="inputbox"
+               required="true"
+               size="40" label="COM_PESAPAL_EMAIL"/>
+        <field name="mobile"
+               type="text" class="inputbox"
+               required="true"
+               size="40" label="COM_PESAPAL_MOBILE"/>
+        <field name="amount"
+               type="text" class="inputbox"
+               required="true"
+               size="40" label="COM_PESAPAL_AMOUNT"/>
+        <field
+                name="currency"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_CURRENCY"
+                required="true"
+        >
+            <option value="usd">USD</option>
+            <option value="gpb">GPB</option>
+            <option value="eur">EUR</option>
+            <option value="tzs">TZS</option>
+            <option value="ugx">UGX</option>
+            <option value="ksh">KSH</option>
+        </field>
+        <field
+                name="status"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_STATUS"
+                required="true"
+        >
+            <option value="pending">PENDING</option>
+            <option value="completed">COMPLETED</option>
+        </field>
+    </fieldset>
+
+    <fieldset
+            name="others"
+    >
+        <field name="address" type="text" class="inputbox"
+               size="40" label="COM_PESAPAL_ADDRESS"
+               description="COM_PESAPAL_ADDRESS"
+        />
+        <field name="city" type="text" class="inputbox"
+               size="40" label="COM_PESAPAL_CITY" />
+        <field name="zip" type="text" class="inputbox"
+               size="40" label="COM_PESAPAL_ZIP" />
+        <field
+                name="country"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_COUNTRY"
+        >
+            <option value="pending">PENDING</option>
+            <option value="completed">COMPLETED</option>
+        </field>
+
+        <field name="description" type="textarea" class="inputbox"
+               rows="3" cols="30" label="JGLOBAL_DESCRIPTION"
+               />
+    </fieldset>
+</form>

@@ -1,0 +1,61 @@
+<!--?xml version="1.0"?-->
+<config>
+    <modules>
+        <Fargo_Shipping>
+            <version>0.1.0</version>
+        </Fargo_Shipping>
+    </modules>
+    <global>
+        <models>
+            <fargoshipping>
+                <class>Fargo_Shipping_Model</class>
+            </fargoshipping>
+        </models>
+		
+        <resources>
+            <fargoshipping_setup>
+                <setup>
+                    <module>Fargo_Shipping</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </fargoshipping_setup>
+        </resources>
+    </global>
+    <blocks>
+      <fargoshipping>
+        <class>Fargo_Shipping_Block</class>
+      </fargoshipping>
+    </blocks>
+    <default>
+        <carriers>
+            <fargoshipping>
+                <active>1</active>
+                <allowed_methods>delivery</allowed_methods>
+                <methods>delivery</methods>
+                <sallowspecific>0</sallowspecific>
+               <model>fargoshipping/carrier_localdelivery</model> 
+		<!--<model>Fargo_Shipping_Model_Carrier_LocalDelivery</model>--> 
+                <name>Fargo Shipping</name>
+                <title>Fargo Courier</title>
+                <specificerrmsg>This shipping method is currently unavailable. If
+                    you would like to ship using this shipping method, please contact
+                    us.
+                </specificerrmsg>
+               
+            </fargoshipping>
+        </carriers>
+    </default>
+    <frontend>
+        <routers>
+         <fargoshipping>
+            <use>standard</use>
+         <args>
+          <module>Fargo_Shipping</module>
+          <frontName>fargoshipping</frontName>
+            </args>
+        </fargoshipping>
+        </routers>
+  </frontend>
+</config>

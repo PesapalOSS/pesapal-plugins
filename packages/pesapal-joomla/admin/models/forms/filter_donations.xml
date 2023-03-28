@@ -1,0 +1,48 @@
+<form>
+    <fields name="filter">
+        <field
+                name="search"
+                type="text"
+                hint="JSEARCH_FILTER"
+                class="js-stools-search-string"
+        />
+        <field name="from" type="calendar"
+               class="inputbox"
+               size="22"
+               hint="COM_PESAPAL_FROM"
+               format="%Y-%m-%d"
+               filter="user_utc"/>
+        <field name="to" type="calendar"
+               class="inputbox"
+               size="22"
+               hint="COM_PESAPAL_TO"
+               format="%Y-%m-%d"
+               filter="user_utc"/>
+
+            <field
+            name="status"
+            type="list"
+            onchange="this.form.submit();"
+                    >
+                <option value="">COM_PESAPAL_SELECT_STATUS</option>
+                <option value="PENDING">COM_PESAPAL_PENDING</option>
+                <option value="COMPLETED">COM_PESAPAL_COMPLETED</option>
+                <option value="PLACED">COM_PESAPAL_PLACED</option>
+                <option value="FAILED">COM_PESAPAL_FAILED</option>
+
+            </field>
+
+
+    </fields>
+    <fields name="list">
+        <field
+                name="limit"
+                type="limitbox"
+                class="input-mini"
+                default="25"
+                label="COM_CONTENT_LIST_LIMIT"
+                description="COM_HELLOWORLD_LIST_LIMIT_DESC"
+                onchange="this.form.submit();"
+        />
+    </fields>
+</form>

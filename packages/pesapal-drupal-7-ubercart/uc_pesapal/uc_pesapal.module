@@ -1,0 +1,234 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function uc_pesapal_menu() {
+	$items = array();
+	
+	$items['cart/pesapal/complete'] = array(
+	  'title' => 'Order complete',
+	  'page callback' => 'uc_pesapal_complete',
+	  'access callback' => TRUE,
+	  'type' => MENU_CALLBACK,
+	  'file' => 'uc_pesapal.pages.inc',
+	);
+	
+	$items['cart/pesapal/pay'] = array(
+	  'title' => '',
+	  'page callback' => 'uc_pesapal_makepayment',
+	  'access arguments' => array('access content'),
+	  'type' => MENU_CALLBACK,
+	  'file' => 'uc_pesapal.pages.inc',
+	);
+	
+	return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function uc_pesapal_init() {
+	global $conf;
+	
+	$conf['i18n_variables'][] = 'uc_pesapal_method_title';
+	$conf['i18n_variables'][] = 'uc_pesapal_checkout_button';
+}
+
+/**
+ * Implements hook_uc_payment_method().
+ *
+ * @see uc_payment_method_pesapal()
+ */
+function uc_pesapal_uc_payment_method() {
+	$path = base_path() . drupal_get_path('module', 'uc_pesapal');
+	$title = variable_get('uc_pesapal_method_title', t('Pesapal: simple, secure, reliable..'));
+	$title .= '<br />' . theme('image', array(
+	  'path' => drupal_get_path('module', 'uc_pesapal') . '/pesapal-card-sm.png',
+	  'attributes' => array('class' => array('uc-pesapal-logo')),
+	));
+	
+	$methods['pesapal'] = array(
+	  'name' => t('Pesapal'),
+	  'title' => $title,
+	  'review' => t('Pesapal'),
+	  'desc' => t('Use Pesapal e-wallet, MPesa, Yu Cash, Airtel Money, Eazy 24/7, cooperative bank, visa, mastercard and so much more to pay.'),
+	  'callback' => 'uc_payment_method_pesapal',
+	  'redirect' => 'uc_pesapal_form',
+	  'weight' => 3,
+	  'checkout' => TRUE,
+	  'no_gateway' => TRUE,
+	);
+	
+	return $methods;
+}
+
+/**
+ * Adds Pesapal settings to the payment method settings form.
+ *
+ * @see uc_pesapal_uc_payment_method()
+ */
+function uc_payment_method_pesapal($op, &$order, $form = NULL, &$form_state = NULL) {
+	global $base_url;
+	switch ($op) { 
+		case 'cart-details':
+		
+		return '';
+		
+		case 'cart-process':
+		
+		return '';
+		
+		case 'cart-review':
+			//Comment below code if your cap has been removed
+			if ($order->order_total > '70000') {
+				$error = drupal_set_message('You are allowed to purchase goes worth a maximum of KES 70,000 in a single order', 'error');
+			  	drupal_goto($base_url.'/?q=cart', $error);
+			}
+
+		return '';
+		
+		case 'settings':
+		
+			# the options to display in our form radio buttons
+			$options = array(
+			  'live' => t('Live'),
+			  'demo' => t('Demo'),
+			);
+
+			$form['uc_pesapal_account'] = array(
+			  '#type' => 'radios',
+			  '#title' => t('Select Pesapal Account'),
+			  '#options' => $options,
+			  '#description' => t('Use Live/Demo Pesapal Account?'),
+			  '#default_value' => variable_get('uc_pesapal_account', ''),
+			);
+			
+			$form['uc_pesapal_consumer_key'] = array(
+				'#type' => 'textfield',
+				'#title' => t('Consumer key'),
+				'#description' => t('Consumer key from pesapal. Register to get one'),
+				'#default_value' => variable_get('uc_pesapal_consumer_key', ''),
+				'#size' => 40,
+			  );
+			  
+			  $form['uc_pesapal_consumer_secret'] = array(
+				'#type' => 'textfield',
+				'#title' => t('Consumer secret'),
+				'#description' => t('Consumer secret from pesapal. Register to get one'),
+				'#default_value' => variable_get('uc_pesapal_consumer_secret', ''),
+				'#size' => 40,
+			  );
+			  
+			  $form['uc_pesapal_reference_code'] = array(
+				'#type' => 'textfield',
+				'#title' => t('Reference Code'),
+				'#description' => t('Business reference code. 3-4 digit code.<br />This code shall not be provided by pesapal. Come up with your own that will be unique for each business. <br />Eg ABC - For payment to ABC company. <br />ZACK - For "bring Zack home" campaign<br />'),
+				'#default_value' => variable_get('uc_pesapal_reference_code', ''),
+				'#size' => 16,
+			  );
+			  
+			  $form['uc_pesapal_desc'] = array(
+				'#type' => 'textarea',
+				'#title' => t('Business description'),
+				'#description' => t('Short description about your business. (5-10 words)<br /> eg, Shop online at onlineshopers.co.ke'),
+				'#default_value' => variable_get('uc_pesapal_desc', 'Official pesapal module for ubercart shopping cart[drupal]'),
+			  );
+			  
+			  $form['uc_pesapal_policy'] = array(
+				'#type' => 'select',
+				'#title' => t('Buyer protection policy'),
+				//'#description' => t('Enable if payment should be received after consumer confirms delivery. Enables buyer protection policy'),
+				'#options' => array(
+				  'MERCHANT' => t('Disabled'),
+				  //'BUYER' => t('Enabled'),
+				),
+				'#default_value' => variable_get('uc_pesapal_policy', 'MERCHANT'),
+			  );
+			  
+			  $form['uc_pesapal_completed_msg'] = array(
+				'#type' => 'textarea',
+				'#title' => t('Payment Confirmed Message'),
+				'#description' => t('Message to be displayed to the clients for confirmed payments'),
+				'#default_value' => variable_get('uc_pesapal_completed_msg', 'Payment received. Thank you for shopping with us'),
+			  );
+			  
+			  $form['uc_pesapal_pending_msg'] = array(
+				'#type' => 'textarea',
+				'#title' => t('Payment Pending Message'),
+				'#description' => t('Message to be displayed to the clients for waiting confirmation'),
+				'#default_value' => variable_get('uc_pesapal_pending_msg', 'Please wait as we confirm the payment status from pesapal. You will be notified once confirmed.'),
+			  );
+			  
+			  $form['uc_pesapal_failed_msg'] = array(
+				'#type' => 'textarea',
+				'#title' => t('Payment Failed Message'),
+				'#description' => t('Payment Failed message to be displayed to the client'),
+				'#default_value' => variable_get('uc_pesapal_failed_msg', 'Payment has failed'),
+			  );
+		
+			  $form['uc_pesapal_invalid_msg'] = array(
+				'#type' => 'textarea',
+				'#title' => t('Failed Message'),
+				'#description' => t('Payment invalid message to be displayed to the client. <br />Invalid status is returned when the system experiences an error trying to query the status.'),
+				'#default_value' => variable_get('uc_pesapal_invalid_msg', 'Thanks you for shopping with us. You shall be notified once your payment has been confirmed.'),
+			  );
+			  
+		return $form;
+	}
+}
+
+/**
+ * Form to build the submission to Pesapal.com.
+ */
+function uc_pesapal_form($form, &$form_state, $order) {
+	global $base_path,$base_url;
+	
+	$country = uc_get_country_data(array('country_id' => $order->billing_country));
+	if ($country === FALSE) {
+	  $country = array(0 => array('country_iso_code_3' => 'USA'));
+	}
+	//Important infor that users should not be able to edit
+	$_SESSION['cart']['total'] = uc_currency_format($order->order_total, FALSE, FALSE, '.');
+	$_SESSION['cart']['currency'] = $order->currency;
+	$_SESSION['cart']['callback_url'] = $base_url.'/?q=cart/pesapal/complete';
+	$_SESSION['cart']['payment_method'] = 'PESAPAL';
+	
+	$data = array(
+	  'cart_order_id' => $order->order_id,
+	  'card_holder_name' => drupal_substr($order->billing_first_name . ' ' . $order->billing_last_name, 0, 128),
+	  'first_name' => $order->billing_first_name,
+	  'last_name' => $order->billing_last_name,
+	  'street_address' => drupal_substr($order->billing_street1, 0, 64),
+	  'street_address2' => drupal_substr($order->billing_street2, 0, 64),
+	  'city' => drupal_substr($order->billing_city, 0, 64),
+	  'state' => uc_get_zone_code($order->billing_zone),
+	  'zip' => drupal_substr($order->billing_postal_code, 0, 16),
+	  'country' => $country[0]['country_iso_code_3'],
+	  'email' => drupal_substr($order->primary_email, 0, 64),
+	  'phone' => drupal_substr($order->billing_phone, 0, 16),
+	  'id_type' => 1,
+	);
+	
+	$i = 0;
+	foreach ($order->products as $product) {
+	  $i++;
+	  $data['c_prod_' . $i] = $product->model . ',' . $product->qty;
+	  $data['c_name_' . $i] = $product->title;
+	  $data['c_description_' . $i] = '';
+	  $data['c_price_' . $i] = uc_currency_format($product->price, FALSE, FALSE, '.');
+	}
+	
+	$form['#action'] = $base_path.'?q=cart/pesapal/pay';
+	
+	foreach ($data as $name => $value) {
+	  $form[$name] = array('#type' => 'hidden', '#value' => $value);
+	}
+	
+	$form['actions'] = array('#type' => 'actions');
+	$form['actions']['submit'] = array(
+	  '#type' => 'submit',
+	  '#value' => variable_get('uc_pesapal_checkout_button', t('Submit Order')),
+	);
+	
+	return $form;
+}

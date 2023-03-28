@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Pesapal_Pesapalexpress>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Pesapal_Pesapalexpress>
+    </modules>
+</config>

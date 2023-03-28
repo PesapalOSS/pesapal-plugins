@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fargo_Shipping>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Shipping />
+            </depends>
+        </Fargo_Shipping>
+    </modules>
+    <frontend>
+		<events>
+            <sales_order_save_after>
+                <observers>
+                    <fargo_shipping_observer>
+                        <type>singleton</type>
+                        <class>Fargo_Shipping_Model_Observer</class>
+                        <method>updatefargo</method>
+                    </fargo_shipping_observer>
+                </observers>
+            </sales_order_save_after>
+            <sales_order_payment_pay>
+                <observers>
+                    <fargo_shipping_observer>
+                        <type>singleton</type>
+                        <class>Fargo_Shipping_Model_Observer</class>
+                        <method>notifydelivery</method>
+                    </fargo_shipping_observer>
+                </observers>
+            </sales_order_payment_pay >  
+		</events>
+	</frontend>
+</config>

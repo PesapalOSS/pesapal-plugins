@@ -1,0 +1,16 @@
+# Schema for the configuration files of the uc_pesapal module.
+
+uc_pesapal.settings:
+  type: config_object
+  label: 'Pesapal settings'
+  mapping:
+    uc_pesapal_is_live:
+      type: string
+      label: 'Use Live Pesapal Account?'
+    uc_pesapal_consumer_key:
+      type: string
+      label: 'Consumer key from pesapal. Register to get one'
+    uc_pesapal_consumer_secret:
+      type: string
+      label: 'Consumer secret from pesapal. Register to get one'
+    

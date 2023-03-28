@@ -1,0 +1,58 @@
+##########################
+Pesapal virtuemart payment extention v3.0.10.
+Author: Lazaro Ong’ele
+Email: lazaro@pesapal.com
+Email: developer@pesapal.com
+Forum: developer.pesapal.com
+##########################
+
+Copyright (C) 2016 PesaPal - All rights reserved.
+This is a free plugin.
+
+##########################
+   ABOUT
+##########################
+
+PesaPal payment for virtuemart is an Open Source Online-payment Application.
+
+It's an extension for the Content Management System "Joomla!" and cannot be used without it. It installs fairly easy using the automatic installers. 
+It's intended for use in small / mid-sized Online organisations / business. For any business that wants to receive payments locally or from abroad.
+
+This package is for new installations only. 
+You just need a working Joomla Installation and virtemart installed in your Joomla. 
+You can get your copy of Joomla from http://joomla.org
+
+This package was successfully tested on 
+- VirtueMart 3.0.10 
+- Please note that it may not be compatible with later VirtueMart versions.
+
+
+##########################
+   INSTALLATION
+##########################
+
+1.Login to your administrator backend
+2.Go to extensions manager and upload/install the vmpesapal.zip file
+  "Installing plugin was successful" will appear if all goes well.
+3.Activate the plugin - Go to extensions, plugin manager
+  Locate the pesapal plugin and enable it
+4.Configure the plugin
+	- Go to components/ virtuemart select payment methods
+  	- Click on 'NEW' at the top right corner. Fill in the details:
+	 	Payment Name: PesaPal 
+	 	Published: Yes
+	 	Payment description: Small description about pesapal to be displayed to a user
+	                      eg, Pay using Mpesa,Zap,Eazy24/7,Visa and MasterCard
+         	Payment Method: Select  PesaPal
+	 	Shopper Group : Select All
+	- Click on "SAVE" button
+	- Choose the "Configuration" tab, Fill in the details:
+		Shop Environment - Choose between sandbox/live.
+		Live Merchant Key / Live Merchant Secret - Register at www.pesapal.com to get this. An email will be set with these details.
+		Sandbox Merchant Key / Sandbox Merchant Secret - Register at demo to get this. No email will be sent, instead, login to your merchant Dashboard to get these details.	
+5.Setting up an IPN.
+  	- Login to your PesaPal merchant account.
+	- Select “IPN settings”
+	- Add new IPN listener with the flooding configurations:
+    		Website Domain: www.example.com
+    		Website IPN Listener URL: http://www.example.com/index.php?option=com_virtuemart&view=pluginresponse&task=pluginnotification	 

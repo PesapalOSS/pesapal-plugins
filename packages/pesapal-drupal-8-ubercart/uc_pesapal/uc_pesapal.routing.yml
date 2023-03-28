@@ -1,0 +1,20 @@
+uc_pesapal.complete:
+ path: '/cart/pesapal/complete'
+ defaults:
+  _controller: '\Drupal\uc_pesapal\Controller\PesapalController::complete'
+  _title: 'Order complete'
+ requirements:
+  _permission: 'access content'
+uc_pesapal.makepayment:
+ path: '/cart/pesapal/pay'
+ defaults:
+  _controller: '\Drupal\uc_pesapal\Controller\PesapalController::makepayment'
+  _title: 'Make Payment'
+ requirements:
+  _permission: 'access content'
+uc_pesapal.inpreturn:
+ path: '/cart/pesapal/ipn'
+ defaults:
+  _controller: '\Drupal\uc_pesapal\Controller\PesapalController::complete'
+ requirements:
+  _permission: 'access content'

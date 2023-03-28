@@ -1,0 +1,66 @@
+<?php
+/**
+  * Name:		Pesapalexpress 
+  * Type:		Payment Controller
+  * Built by:	verviant <www.verviant.com>
+  * Date:		3-13-2013
+  * Tested on:	Magento ver. 1.7.0.2
+ */
+   
+	require_once (Mage::getBaseDir('base') .DS. 'app'.DS.'code'.DS.'local'.DS.'Pesapal'.DS.'Pesapalexpress'.DS . 'Helper' . DS .'OAuth.php');
+	
+	// Retrieve order
+	$order 		= 	new Mage_Sales_Model_Order();
+	$orderId 	= 	Mage::getSingleton('checkout/session')->getLastRealOrderId();
+	$order->loadByIncrementId($orderId);
+	$orderDetails = $order->getData();
+
+	//pesapal params
+	$token 				= 	$params 	= 	NULL;
+	$consumer_key 		= 	Mage::getStoreConfig('payment/pesapalexpress/consumer_key');
+	$consumer_secret 	= 	Mage::getStoreConfig('payment/pesapalexpress/consumer_secret');
+	$consumer 			= 	new OAuthConsumer($consumer_key, $consumer_secret);
+	$signature_method	= 	new OAuthSignatureMethod_HMAC_SHA1();
+	$sandbox			= 	Mage::getStoreConfig('payment/pesapalexpress/test_api');
+	if($sandbox)
+		$iframelink 		= 	'http://demo.pesapal.com/api/PostPesapalDirectOrderV4';
+	else
+		$iframelink 		= 	'https://www.pesapal.com/api/PostPesapalDirectOrderV4';
+	
+	//get form details
+	$amount 		=	$orderDetails['grand_total'];
+	$amount 		= 	number_format($amount, 2);
+	$desc 			= 	"Payments for order no.".$orderId." Amounting to ".$orderDetails['order_currency_code']." ".$amount." bought from ".Mage::app()->getStore()->getName();
+	$type 			=  	"MERCHANT";
+	$reference 		=  	$orderId; 
+	$first_name 	= 	$orderDetails['customer_firstname'];
+	$last_name 		= 	$orderDetails['customer_lastname'];
+	$email 			=  	$orderDetails['customer_email'];
+	$currency 		=  	$orderDetails['order_currency_code'];
+	$phonenumber 	= 	'';
+	$callback_url 	= 	Mage::getBaseUrl()."pesapalexpress/payment/response";
+	$post_xml 		= 	"<?xml version=\"1.0\" encoding=\"utf-8\"?>
+							<PesapalDirectOrderInfo xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" 
+								Currency=\"".$currency."\" 
+								Amount=\"".$amount."\" 
+								Description=\"".$desc."\" 
+								Type=\"".$type."\" 
+								Reference=\"".$reference."\" 
+								FirstName=\"".$first_name."\" 
+								LastName=\"".$last_name."\" 
+								Email=\"".$email."\" 
+								PhoneNumber=\"".$phonenumber."\" 
+								xmlns=\"http://www.pesapal.com\" 
+							/>";
+	$post_xml 		= 	htmlentities($post_xml);
+
+	//post transaction to pesapal
+	$iframe_src 	= 	OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $iframelink, $params);
+	$iframe_src->set_parameter("oauth_callback", $callback_url);
+	$iframe_src->set_parameter("pesapal_request_data", $post_xml);
+	$iframe_src->sign_request($signature_method, $consumer, $token);
+?>
+
+<iframe src="<?php echo $iframe_src;?>" width="100%" height="700px"  scrolling="no" frameBorder="0">
+    <p>Browser unable to load iFrame</p>
+</iframe>

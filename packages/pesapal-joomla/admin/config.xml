@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="component"
+              label="COM_PESAPAL_COMPONENT_LABEL"
+              addfieldpath="administrator/components/com_pesapal/models/fields"
+    >
+        <field name="ipn"
+               type="Ipn"
+               label="Ipn Callback"
+               required="false" />
+        <field
+                name="app_mode"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_APP_MODE"
+                required="true"
+        >
+            <option value="demo">Demo</option>
+            <option value="live">Live</option>
+        </field>
+        <field
+                name="show_address_fields"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_ADDRESS_FIELDS"
+                required="true"
+        >
+            <option value="demo">Yes</option>
+            <option value="live">Live</option>
+        </field>
+        <field
+                name="consumer_key"
+                type="text"
+                label="COM_PESAPAL_CONSUMER_KEY"
+                size="40"
+                class="inputbox"
+                default=""
+        />
+
+        <field
+                name="consumer_secret"
+                type="text"
+                label="COM_PESAPAL_CONSUMER_SECRET"
+                size="40"
+                class="inputbox"
+                default=""
+        />
+
+        <field
+                name="payment_type"
+                type="list" class="inputbox"
+                label="COM_PESAPAL_PAYMENT_TYPE"
+                required="true"
+        >
+            <option value="donation">Donation</option>
+            <option value="payement">Payment</option>
+        </field>
+        <field name="show_address_fields"
+               type="radio" default="1"
+               label="COM_PESAPAL_ADDRESS_FIELDS"
+               class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+    </fieldset>
+</config>

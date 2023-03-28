@@ -1,0 +1,24 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function uc_pesapal_menu() {
+	$items = array();
+	
+	$items['cart/pesapal/complete'] = array(
+	  'title' => 'Order complete',
+	  'route_name' => 'uc_pesapal.complete',
+	);
+	
+	$items['cart/pesapal/ipn'] = array(
+	  'title' => 'IPN',
+	  'route_name' => 'uc_pesapal.inpreturn',
+	);
+	
+	$items['cart/pesapal/pay'] = array(
+	  'title' => 'Make Payment',
+	  'route_name' => 'uc_pesapal.makepayment',
+	);
+	
+	return $items;
+}

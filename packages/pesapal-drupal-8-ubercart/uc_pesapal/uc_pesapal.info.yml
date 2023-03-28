@@ -1,0 +1,7 @@
+name : Pesapal
+description : Processes payments using Pesapal.
+dependencies : uc_payment
+package : Ubercart - payment
+core : 8.x
+type: module
+

@@ -1,0 +1,26 @@
+Step #1: Extract content in Step1 to app/code/local
+Step #2: Extract content in Step2 to app/design/frontend/base/default/template
+Step #3: Extract content in Step3 to app/etc/modules
+
+Once you have done this, you need to follow the following steps to get it working:
+1. Create a merchant account (Business account) at www.pesapal.com. After registration, Pesapal will send you an email.	
+2. Log into your Magento admin, clear your cache, and make sure the extension is enabled and working fine by navigating to System -> Configuration -> Sales -> Payment Methods and checking if you can see it there. "Pesapal Express"
+3. Change configurations. 
+	Enabled - YES. 
+    Test API - NO (if you set this to yes, this means you are using our demo API. You will have to open an account on demo.pesapal.com)
+    Consumer Key & Consumer Secret - You should have received this from the registration mail pesapal sent you. If you lost this, login to your pesapal merchant account at at the bottom of the dashboard you will get them. Note, if you are using TEST API, get these from your merchant dashboard since pesapal sandbox doesn't not support mailing.
+	New order status -This is the default order status set when a user selects pesapal. (Advice Select "processing"). All orders with this status mean the user created an order but never completed the payment.
+4. Save configurations
+5. We need to add a new column in your database to store tracking codes sent by pesapal when a payment is made. 
+Run this URL on your browser http://www.mywebsitename.com/pesapalexpress/payment/createPesapalTable eg. http://redstarafrica.com/pesapalexpress/payment/createPesapalTable
+6. Setting up IPN.
+   Login to your pesapal account.
+   Add up the the IPN link http://www.mywebsitename.com/pesapalexpress/payment/ipn
+  
+   
+    
+   RELATED LINKS: 
+      	http://www.youtube.com/watch?v=Tl7Oo6zrK2Q
+
+Pesapal- Simple, secure, reliable!
+

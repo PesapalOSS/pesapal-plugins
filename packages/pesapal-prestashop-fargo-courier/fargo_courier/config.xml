@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>fargo_courier</name>
+	<displayName><![CDATA[Fargo Courier]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Our Business is delivering your business]]></description>
+	<author><![CDATA[Rowlings Odhiambo rowlings@pesapal.com]]></author>
+	<tab><![CDATA[shipping_logistics]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

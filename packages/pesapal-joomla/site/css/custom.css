@@ -1,0 +1,337 @@
+.form-control {
+    height: 32px !important;
+}
+.donation-form {
+    background-color: #f5f5f5;
+    padding: 18px 0;
+}
+
+textarea.form-control {
+    height: 200px !important;
+
+}
+.hidden{
+    display: none;
+}
+.errors{
+    color: red;
+
+}
+/*Start Wizard*/
+
+.bootstrapWizard {
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+.form-content{
+    padding-top: 75px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.bootstrapWizard a:hover,.bootstrapWizard a:active,.bootstrapWizard a:focus {
+    text-decoration: none
+}
+
+.bootstrapWizard li {
+    display: block;
+    float: left;
+    width: 33%;
+    text-align: center;
+    padding-left: 0
+}
+
+.bootstrapWizard li:before {
+    border-top: 3px solid #55606E;
+    content: "";
+    display: block;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+    top: 11px;
+    right: 1px;
+    width: 100%;
+    z-index: 1
+}
+
+.bootstrapWizard li:first-child:before {
+    left: 50%;
+    max-width: 50%
+}
+
+.bootstrapWizard li:last-child:before {
+    max-width: 50%;
+    width: 50%
+}
+
+.bootstrapWizard li.complete .step {
+    background: #0aa66e;
+    padding: 1px 6px;
+    border: 3px solid #55606E
+}
+
+.bootstrapWizard li .step i {
+    font-size: 10px;
+    font-weight: 400;
+    position: relative;
+    top: -1.5px
+}
+
+.bootstrapWizard li .step {
+    background: #B2B5B9;
+    color: #fff;
+    display: inline;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 12px;
+    padding: 7px 13px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    transition: all .1s linear 0s
+}
+
+.bootstrapWizard li.active .step,.bootstrapWizard li.active.x .step {
+    background: #0091d9;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 13px;
+    font-size: 15px;
+    border-radius: 50%;
+    border: 3px solid #55606E
+}
+
+.bootstrapWizard li.complete .title,.bootstrapWizard li.active .title {
+    color: #2B3D53
+}
+
+.bootstrapWizard li .title {
+    color: #bfbfbf;
+    display: block;
+    font-size: 13px;
+    line-height: 15px;
+    max-width: 100%;
+    position: relative;
+    table-layout: fixed;
+    text-align: center;
+    top: 20px;
+    word-wrap: break-word;
+    z-index: 104
+}
+
+.wizard-actions {
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.wizard-actions li {
+    display: inline
+}
+
+.tab-content.transparent {
+    background-color: transparent
+}
+.currency-drop-down{
+    height: 32px;
+    border-radius: 0px;
+    width: 64px;
+    float: left;
+}
+.pager .next>button, .pager .next>span {
+    float: right;
+}
+.pager li>button, .pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.loader-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    right: 0px;
+    z-index: 12;
+    display:none;
+}
+.loader{
+    background-image: url('loader.gif');
+    width: 216px;
+    height: 27px;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    background-repeat: no-repeat;
+    padding-top: 20px;
+    padding-left: 20px;
+
+}
+.iframe-container{
+    position: relative;
+    width:100%;
+    height:620px;
+
+}
+.no-padding{
+    padding-right: 5px;
+    padding-left: 0px;
+}
+.updating{
+    text-align: center;
+    margin-left: -61px;
+}
+#formContainer{
+    position: relative;
+}
+
+.alert-message
+{
+    margin: 20px 0 !important;
+    padding: 20px !important;
+    border-left: 3px solid #eee !important;
+}
+.alert-message h4
+{
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+}
+.alert-message p:last-child
+{
+    margin-bottom: 0;
+}
+.alert-message code
+{
+    background-color: #fff;
+    border-radius: 3px;
+}
+.alert-message-success
+{
+    background-color: #F4FDF0 !important;
+    border-color: #3C763D !important;
+}
+.alert-message-success h4
+{
+    color: #3C763D !important;
+}
+.alert-message-danger
+{
+    background-color: #fdf7f7 !important;
+    border-color: #d9534f !important;
+}
+.alert-message-danger h4
+{
+    color: #d9534f !important;
+}
+.alert-message-warning
+{
+    background-color: #fcf8f2;
+    border-color: #f0ad4e;
+}
+.alert-message-warning h4
+{
+    color: #f0ad4e;
+}
+.alert-message-info
+{
+    background-color: #f4f8fa;
+    border-color: #5bc0de;
+}
+.alert-message-info h4
+{
+    color: #5bc0de;
+}
+.alert-message-default
+{
+    background-color: #EEE !important;
+    border-color: #B4B4B4 !important;
+}
+.alert-message-default h4
+{
+    color: #000 !important;
+}
+.alert-message-notice
+{
+    background-color: #FCFCDD;
+    border-color: #BDBD89;
+}
+.alert-message-notice h4
+{
+    color: #444;
+}
+.form-actions {
+    padding: 17px 20px 18px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+}
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 18px;
+    font-size: 19.5px;
+    line-height: 36px;
+    color: #333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.btn-primary {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #004b8d;
+    background-image: -moz-linear-gradient(top,#005e8d,#002f8d);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#005e8d),to(#002f8d));
+    background-image: -webkit-linear-gradient(top,#005e8d,#002f8d);
+    background-image: -o-linear-gradient(top,#005e8d,#002f8d);
+    background-image: linear-gradient(to bottom,#005e8d,#002f8d);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff005e8d', endColorstr='#ff002e8d', GradientType=0);
+    border-color: #002f8d #002f8d #001641;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #333;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+    background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe5e5e5', GradientType=0);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    border: 1px solid #bbb;
+    border-bottom-color: #a2a2a2;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+}
+/*legend {*/
+    /*font-size: 15px;*/
+/*}*/
+/*End Wizard*/

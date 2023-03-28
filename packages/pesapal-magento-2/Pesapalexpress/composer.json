@@ -1,0 +1,20 @@
+{
+    "name": "Pesapal/Pesapalexpress",
+    "type": "magento2-module",
+    "description": "Pesapal Payment Gateway",
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Pesapal/Pesapalexpress"
+            ]
+        ]
+    },
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Verviant",
+            "homepage": "http://www.verviant.com"
+        }
+    ]
+}

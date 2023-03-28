@@ -1,0 +1,19 @@
+.form-control {
+    height: 32px !important;
+}
+.donation-form {
+    background-color: #f5f5f5;
+    padding: 18px 0;
+}
+
+textarea.form-control {
+    height: 200px !important;
+
+}
+.hidden{
+    display: none;
+}
+.errors{
+    color: red;
+
+}

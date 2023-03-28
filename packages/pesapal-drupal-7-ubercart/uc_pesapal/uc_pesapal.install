@@ -1,0 +1,104 @@
+<?php
+/**
+ * Implements hook_install().
+ */
+function uc_pesapal_install() {
+  $t = get_t();
+
+  db_merge('uc_order_statuses')
+    ->key(array('order_status_id' => 'pesapal_completed'))
+    ->insertFields(array(
+      'order_status_id' => 'pesapal_completed',
+      'title' => $t('Pesapal completed'),
+      'state' => 'pesapal_completed',
+      'weight' => 7,
+      'locked' => 1,
+    ))
+    ->updateFields(array(
+      'state' => 'pesapal_completed',
+      'locked' => 1,
+    ))
+    ->execute();
+
+  db_merge('uc_order_statuses')
+    ->key(array('order_status_id' => 'pesapal_pending'))
+    ->insertFields(array(
+      'order_status_id' => 'pesapal_pending',
+      'title' => $t('Pesapal pending'),
+      'state' => 'pesapal_pending',
+      'weight' => 7,
+      'locked' => 1,
+    ))
+    ->updateFields(array(
+      'state' => 'pesapal_pending',
+      'locked' => 1,
+    ))
+    ->execute();
+
+  db_merge('uc_order_statuses')
+    ->key(array('order_status_id' => 'pesapal_failed'))
+    ->insertFields(array(
+      'order_status_id' => 'pesapal_failed',
+      'title' => $t('Pesapal failed'),
+      'state' => 'pesapal_failed',
+      'weight' => 7,
+      'locked' => 1,
+    ))
+    ->updateFields(array(
+      'state' => 'pesapal_failed',
+      'locked' => 1,
+    ))
+    ->execute();
+
+  db_merge('uc_order_statuses')
+    ->key(array('order_status_id' => 'pesapal_invalid'))
+    ->insertFields(array(
+      'order_status_id' => 'pesapal_invalid',
+      'title' => $t('pesapal invalid'),
+      'state' => 'pesapal_invalid',
+      'weight' => 7,
+      'locked' => 1,
+    ))
+    ->updateFields(array(
+      'state' => 'pesapal_invalid',
+      'locked' => 1,
+    ))
+    ->execute();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function uc_pesapal_uninstall() {
+  db_update('uc_order_statuses')
+    ->fields(array(
+      'locked' => 0,
+    ))
+    ->condition('order_status_id', 'pesapal_completed')
+    ->execute();
+	
+  db_update('uc_order_statuses')
+    ->fields(array(
+      'locked' => 0,
+    ))
+    ->condition('order_status_id', 'pesapal_pending')
+    ->execute();
+	
+  db_update('uc_order_statuses')
+    ->fields(array(
+      'locked' => 0,
+    ))
+    ->condition('order_status_id', 'pesapal_failed')
+    ->execute();
+	
+  db_update('uc_order_statuses')
+    ->fields(array(
+      'locked' => 0,
+    ))
+    ->condition('order_status_id', 'pesapal_invalid')
+    ->execute();
+
+  db_delete('variable')
+    ->condition('name', 'uc_pesapal_%', 'LIKE')
+    ->execute();
+}
